@@ -8,7 +8,7 @@ Clone form https://aur.archlinux.org/splayer-appimage.git
 
 ## 食用指南
 
-````bash
+```bash
 git clone https://github.com/miaoermua/splayer-pacman.git
 cd splayer-pacman
 makepkg -si
