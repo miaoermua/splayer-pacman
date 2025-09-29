@@ -1,4 +1,4 @@
-# Maintainer: MuyeSlock <MuyeSlock at 163 dot com>
+# Maintainer: miaoermua <miaoermua@gmail.com>
 # Updated for native pacman package support
 
 _pkgname=splayer
