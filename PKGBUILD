@@ -4,7 +4,7 @@
 _pkgname=splayer
 pkgname=splayer
 pkgver=3.0.0_beta.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Splayer | A minimalist music player"
 arch=('x86_64' 'aarch64')
 url="https://github.com/imsyy/SPlayer"
@@ -26,7 +26,7 @@ depends=(
   'libnotify'
 )
 optdepends=(
-  'http-parser: required by some Electron builds (if missing, app may fail to start)'
+  'http-parser: required by some Electron builds'
   'libappindicator: for system tray icon support'
 )
 options=(!strip !debug)
