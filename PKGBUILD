@@ -11,7 +11,24 @@ url="https://github.com/imsyy/SPlayer"
 license=("AGPL-3.0-only")
 provides=("${_pkgname}=${pkgver}")
 conflicts=("${_pkgname}")
-depends=()
+depends=(
+  'c-ares'
+  'ffmpeg'
+  'gtk3'
+  'libevent'
+  'libvpx'
+  'libxslt'
+  'libxss'
+  'minizip'
+  'nss'
+  're2'
+  'snappy'
+  'libnotify'
+)
+optdepends=(
+  'http-parser: required by some Electron builds (if missing, app may fail to start)'
+  'libappindicator: for system tray icon support'
+)
 options=(!strip !debug)
 
 if [ "$CARCH" = "x86_64" ]; then
