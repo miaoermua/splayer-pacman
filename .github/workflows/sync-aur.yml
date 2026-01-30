@@ -26,6 +26,10 @@ jobs:
           VERSION=$(grep "^pkgver=" PKGBUILD | cut -d'=' -f2)
           TIMESTAMP=$(date +%s)
 
+          # 添加 AUR 服务器到 known_hosts
+          mkdir -p ~/.ssh
+          ssh-keyscan aur.archlinux.org >> ~/.ssh/known_hosts
+
           # 克隆 AUR 仓库
           git clone ssh://aur@aur.archlinux.org/splayer.git
 
