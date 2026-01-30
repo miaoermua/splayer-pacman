@@ -33,10 +33,11 @@ jobs:
           # 克隆 AUR 仓库
           git clone ssh://aur@aur.archlinux.org/splayer.git
 
-          # 复制文件到 AUR 目录
+          # 复制文件
           cp PKGBUILD splayer/
           cp .SRCINFO splayer/
-          cp .gitignore splayer/  # 如果有特定的 .gitignore 设置
+          cp .gitignore splayer/
+          cp README.md splayer/
 
           # 进入 AUR 目录
           cd splayer
