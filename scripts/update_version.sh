@@ -12,14 +12,10 @@ old_version=$(grep "^pkgver=" PKGBUILD | cut -d'=' -f2)
 
 echo "正在将版本从 $old_version 更新到 $new_version"
 
-# 更新 pkgrel (递增)
-current_pkgrel=$(grep "^pkgrel=" PKGBUILD | cut -d'=' -f2)
-new_pkgrel=$((current_pkgrel + 1))
+new_pkgrel=1
 
-# 获取新版本的下载链接和 SHA256 值
 new_version_formatted="${new_version//_/-}"
 
-# 下载新的 pacman 包并计算 SHA256
 echo "获取新版本的 SHA256 值..."
 
 # 创建临时目录
