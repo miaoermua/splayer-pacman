@@ -103,38 +103,42 @@ mv PKGBUILD.new PKGBUILD
 
 # 更新 .SRCINFO 文件
 echo "更新 .SRCINFO 文件..."
+
+# 替换版本格式
+srcinfo_version="${new_version//-/_}"
+
 cat > .SRCINFO << EOF
 pkgbase = splayer
-\tpkgdesc = Splayer | A minimalist music player
-\tpkgver = ${new_version}
-\tpkgrel = ${new_pkgrel}
-\turl = https://github.com/imsyy/SPlayer
-\tarch = x86_64
-\tarch = aarch64
-\tlicense = AGPL-3.0-only
-\tdepends = c-ares
-\tdepends = ffmpeg
-\tdepends = gtk3
-\tdepends = libevent
-\tdepends = libvpx
-\tdepends = libxslt
-\tdepends = libxss
-\tdepends = minizip
-\tdepends = nss
-\tdepends = re2
-\tdepends = snappy
-\tdepends = libnotify
-\toptdepends = http-parser: required by some Electron builds
-\toptdepends = libappindicator: for system tray icon support
-\tprovides = splayer=${new_version}
-\tconflicts = splayer
-\tnoextract = splayer-${new_version_formatted}-x64.pacman
-\toptions = !strip
-\toptions = !debug
-\tsource_x86_64 = https://github.com/imsyy/SPlayer/releases/download/v${new_version_formatted}/splayer-${new_version_formatted}-x64.pacman
-\tsha256sums_x86_64 = ${x86_64_sha256}
-\tsource_aarch64 = https://github.com/imsyy/SPlayer/releases/download/v${new_version_formatted}/splayer-${new_version_formatted}-aarch64.pacman
-\tsha256sums_aarch64 = ${aarch64_sha256}
+	pkgdesc = Splayer | A minimalist music player
+	pkgver = ${srcinfo_version}
+	pkgrel = ${new_pkgrel}
+	url = https://github.com/imsyy/SPlayer
+	arch = x86_64
+	arch = aarch64
+	license = AGPL-3.0-only
+	depends = c-ares
+	depends = ffmpeg
+	depends = gtk3
+	depends = libevent
+	depends = libvpx
+	depends = libxslt
+	depends = libxss
+	depends = minizip
+	depends = nss
+	depends = re2
+	depends = snappy
+	depends = libnotify
+	optdepends = http-parser: required by some Electron builds
+	optdepends = libappindicator: for system tray icon support
+	provides = splayer=${srcinfo_version}
+	conflicts = splayer
+	noextract = splayer-${new_version_formatted}-x64.pacman
+	options = !strip
+	options = !debug
+	source_x86_64 = https://github.com/imsyy/SPlayer/releases/download/v${new_version_formatted}/splayer-${new_version_formatted}-x64.pacman
+	sha256sums_x86_64 = ${x86_64_sha256}
+	source_aarch64 = https://github.com/imsyy/SPlayer/releases/download/v${new_version_formatted}/splayer-${new_version_formatted}-aarch64.pacman
+	sha256sums_aarch64 = ${aarch64_sha256}
 
 pkgname = splayer
 EOF
