@@ -42,9 +42,7 @@ else
     exit 1
 fi
 
-# 下次更新时记得删掉 .2025(
-
-source=("https://github.com/imsyy/SPlayer/releases/download/v${pkgver//_/-}.2025/splayer-${pkgver//_/-}-${_arch_pkg}.pacman")
+source=("https://github.com/imsyy/SPlayer/releases/download/v${pkgver//_/-}/splayer-${pkgver//_/-}-${_arch_pkg}.pacman")
 sha256sums=("${_sha256}")
 
 noextract=("${source[0]##*/}")

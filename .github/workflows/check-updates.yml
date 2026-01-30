@@ -1,0 +1,44 @@
+name: Check for Updates
+
+on:
+  schedule:
+    - cron: '0 11,20 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Check for new version
+        id: check
+        run: |
+          chmod +x scripts/check_version.sh
+          ./scripts/check_version.sh
+
+      - name: Update package if new version exists
+        if: env.VERSION_UPDATE == 'true'
+        run: |
+          chmod +x scripts/update_version.sh
+          ./scripts/update_version.sh ${{ env.NEW_VERSION }}
+
+      - name: Create Pull Request
+        if: env.VERSION_UPDATE == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'sync: ${{ env.NEW_VERSION }}-${{ env.CURRENT_TIME }}'
+          title: 'Update splayer to version ${{ env.NEW_VERSION }}'
+          body: 'Automated update to new version ${{ env.NEW_VERSION }}'
+          branch: update-to-${{ env.NEW_VERSION }}
+          delete-branch: true
