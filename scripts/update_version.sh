@@ -45,7 +45,7 @@ cat > PKGBUILD.new << EOF
 
 _pkgname=splayer
 pkgname=splayer
-pkgver=${new_version}
+pkgver=${new_version//-/_}
 pkgrel=${new_pkgrel}
 pkgdesc="Splayer | A minimalist music player"
 arch=('x86_64' 'aarch64')
