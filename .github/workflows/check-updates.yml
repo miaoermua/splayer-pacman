@@ -23,14 +23,14 @@ jobs:
       - name: Check for new version
         id: check
         run: |
-          chmod +x scripts/check_version.sh
-          ./scripts/check_version.sh
+          chmod +x .github/scripts/check_version.sh
+          ./.github/scripts/check_version.sh
 
       - name: Update package if new version exists
         if: env.VERSION_UPDATE == 'true'
         run: |
-          chmod +x scripts/update_version.sh
-          ./scripts/update_version.sh ${{ env.NEW_VERSION }}
+          chmod +x .github/scripts/update_version.sh
+          ./.github/scripts/update_version.sh ${{ env.NEW_VERSION }}
 
       - name: Create Pull Request
         if: env.VERSION_UPDATE == 'true'
