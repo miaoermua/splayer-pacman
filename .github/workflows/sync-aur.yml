@@ -49,8 +49,13 @@ jobs:
           # 添加所有更改
           git add .
 
-          # 提交更改，使用指定的格式
-          git commit -m "sync: $VERSION-$TIMESTAMP"
+          # 检查是否有更改
+          if ! git diff --cached --quiet; then
+            # 提交更改，使用指定的格式
+            git commit -m "sync: $VERSION-$TIMESTAMP"
 
-          # 推送到 AUR
-          git push
+            # 推送到 AUR
+            git push
+          else
+            echo "No changes detected, skipping commit and push"
+          fi
