@@ -3,9 +3,8 @@
 
 _pkgname=splayer
 pkgname=splayer
-pkgver=3.0.0
-pkgrel=3
-epoch=1
+pkgver=null
+pkgrel=1
 pkgdesc="Splayer | A minimalist music player"
 arch=('x86_64' 'aarch64')
 url="https://github.com/imsyy/SPlayer"
@@ -34,10 +33,10 @@ options=(!strip !debug)
 
 if [ "$CARCH" = "x86_64" ]; then
     _arch_pkg="x64"
-    _sha256="8f79803c4768b56ab80e3acd03a35e78d037d8a6b230de73157a9c30ce484fef"
+    _sha256="0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
 elif [ "$CARCH" = "aarch64" ]; then
     _arch_pkg="aarch64"
-    _sha256="e5a3b25f89a41432ca1ad633340fb2ae516dd76b0bab4e9e2cc52e8a196baca4"
+    _sha256="0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
 else
     error "Unsupported architecture: $CARCH"
     exit 1
