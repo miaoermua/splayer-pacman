@@ -4,7 +4,6 @@ set -e
 
 # 获取当前本地版本
 current_version=$(grep "^pkgver=" PKGBUILD | cut -d'=' -f2)
-current_version_clean="${current_version//_/-}"
 
 echo "当前本地版本: $current_version"
 
@@ -18,6 +17,10 @@ echo "最新上游版本: $latest_version"
 compare_versions() {
     local v1=$1
     local v2=$2
+
+    # 确保版本号不为空且不为 "null"
+    [ -n "$v1" ] && [ "$v1" != "null" ] || return 1
+    [ -n "$v2" ] && [ "$v2" != "null" ] || return 0
 
     # 将版本号标准化以便比较
     # 替换 _ 为 - 并处理 beta 标记
