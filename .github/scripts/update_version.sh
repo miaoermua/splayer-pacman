@@ -70,6 +70,7 @@ depends=(
 optdepends=(
   'http-parser: required by some Electron builds'
   'libappindicator: for system tray icon support'
+  'mpv: for mpv playback engine support'
 )
 options=(!strip !debug)
 
@@ -126,6 +127,7 @@ pkgbase = splayer
 	depends = libnotify
 	optdepends = http-parser: required by some Electron builds
 	optdepends = libappindicator: for system tray icon support
+	optdepends = mpv: for mpv playback engine support
 	provides = splayer=${srcinfo_version}
 	conflicts = splayer
 	noextract = splayer-${new_version_formatted}-x64.pacman
