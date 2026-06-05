@@ -7,9 +7,21 @@ current_version=$(grep "^pkgver=" PKGBUILD | cut -d'=' -f2)
 
 echo "当前本地版本: $current_version"
 
-# 从 GitHub API 获取最新的发布版本
-latest_release=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/imsyy/SPlayer/releases/latest" | jq -r '.tag_name')
-latest_version="${latest_release#v}"  # 移除 'v' 前缀
+latest_release_response=$(curl -sSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/imsyy/SPlayer/releases/latest" || true)
+latest_release=$(printf '%s' "$latest_release_response" | jq -r '.tag_name // empty')
+
+if [ -n "$latest_release" ] && [ "$latest_release" != "null" ]; then
+  latest_version="${latest_release#v}"
+else
+  echo "release/latest 未返回 tag_name，改为从 tags 获取最新版本"
+  latest_version=$(git ls-remote --tags https://github.com/imsyy/SPlayer.git \
+    | awk '{print $2}' \
+    | sed 's#refs/tags/##' \
+    | sed 's/\^{}$//' \
+    | grep -E '^v[0-9]+(\.[0-9]+)*$' \
+    | sort -V \
+    | tail -n1 | sed 's/^v//')
+fi
 
 echo "最新上游版本: $latest_version"
 
