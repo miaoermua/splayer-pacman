@@ -22,6 +22,8 @@ jobs:
 
       - name: Check for new version
         id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x .github/scripts/check_version.sh
           ./.github/scripts/check_version.sh
