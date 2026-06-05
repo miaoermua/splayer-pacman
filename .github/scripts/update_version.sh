@@ -47,7 +47,10 @@ _pkgname=splayer
 pkgname=splayer
 pkgver=${new_version//-/_}
 pkgrel=${new_pkgrel}
-pkgdesc="SPlayer | A minimalist music player"
+
+epoch=1
+pkgdesc="Splayer | A minimalist music player"
+
 arch=('x86_64' 'aarch64')
 url="https://github.com/imsyy/SPlayer"
 license=("AGPL-3.0-only")
@@ -109,6 +112,7 @@ pkgbase = splayer
 	pkgdesc = SPlayer | A minimalist music player
 	pkgver = ${srcinfo_version}
 	pkgrel = ${new_pkgrel}
+	epoch = 1
 	url = https://github.com/imsyy/SPlayer
 	arch = x86_64
 	arch = aarch64
