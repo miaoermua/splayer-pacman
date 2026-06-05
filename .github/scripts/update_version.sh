@@ -47,8 +47,10 @@ _pkgname=splayer
 pkgname=splayer
 pkgver=${new_version//-/_}
 pkgrel=${new_pkgrel}
+
 epoch=1
 pkgdesc="Splayer | A minimalist music player"
+
 arch=('x86_64' 'aarch64')
 url="https://github.com/imsyy/SPlayer"
 license=("AGPL-3.0-only")
@@ -71,6 +73,7 @@ depends=(
 optdepends=(
   'http-parser: required by some Electron builds'
   'libappindicator: for system tray icon support'
+  'mpv: for mpv playback engine support'
 )
 options=(!strip !debug)
 
@@ -106,7 +109,7 @@ srcinfo_version="${new_version//-/_}"
 
 cat > .SRCINFO << EOF
 pkgbase = splayer
-	pkgdesc = Splayer | A minimalist music player
+	pkgdesc = SPlayer | A minimalist music player
 	pkgver = ${srcinfo_version}
 	pkgrel = ${new_pkgrel}
 	epoch = 1
@@ -128,6 +131,7 @@ pkgbase = splayer
 	depends = libnotify
 	optdepends = http-parser: required by some Electron builds
 	optdepends = libappindicator: for system tray icon support
+	optdepends = mpv: for mpv playback engine support
 	provides = splayer=${srcinfo_version}
 	conflicts = splayer
 	noextract = splayer-${new_version_formatted}-x64.pacman
