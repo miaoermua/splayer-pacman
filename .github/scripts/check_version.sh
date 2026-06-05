@@ -8,7 +8,7 @@ current_version=$(grep "^pkgver=" PKGBUILD | cut -d'=' -f2)
 echo "当前本地版本: $current_version"
 
 # 从 GitHub API 获取最新的发布版本
-latest_release=$(curl -s "https://api.github.com/repos/imsyy/SPlayer/releases/latest" | jq -r '.tag_name')
+latest_release=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/imsyy/SPlayer/releases/latest" | jq -r '.tag_name')
 latest_version="${latest_release#v}"  # 移除 'v' 前缀
 
 echo "最新上游版本: $latest_version"
